@@ -1,6 +1,4 @@
 import React from 'react'
-import { CalorieCard } from './calorie-card'
-
 import { modelView } from 'effector-factorio'
 import { useUnit } from 'effector-react'
 import { Button, Input } from '@repo/ui/components'
@@ -9,6 +7,7 @@ import { appName } from '~/shared/settings'
 import { signOutClicked } from '~/entities/session'
 
 import { chatModel } from '../model'
+import { CalorieCard } from './calorie-card'
 import styles from './chat.module.css'
 
 export const ChatConversation = modelView(chatModel, () => {
