@@ -2,7 +2,7 @@
 
 ## Configuration file
 
-Please fill `.env` file with your configuration first.
+Please fill `.env` file with your configuration first. Example for dev: [`.env.dev.example`](.env.dev.example).
 
 ## Installation & Setup
 
@@ -36,5 +36,6 @@ $ MIX_ENV=dev mix phx.server
 - WebSocket/SSE for real-time updates instead of polling.
 - Docker for containerization.
 - Swagger for API documentation.
+- Proper incoming data validation.
 - Rate limiting.
 - Prompt enhancement?
