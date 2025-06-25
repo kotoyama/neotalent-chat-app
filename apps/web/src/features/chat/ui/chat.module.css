@@ -21,7 +21,9 @@
     grid-area: header;
     font-size: var(--text-l);
     padding: var(--space-m);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   & > main {

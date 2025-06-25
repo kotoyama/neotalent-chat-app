@@ -9,6 +9,7 @@ import { createJsonMutation, createJsonQuery } from '@farfetched/core'
 import { zodContract } from '@farfetched/zod'
 import {
   chainRoute,
+  redirect,
   type RouteInstance,
   type RouteParams,
   type RouteParamsAndQuery,
@@ -18,6 +19,7 @@ import { getAuthSessionResponse } from '@repo/shared-types/contracts'
 
 import { appStarted } from '~/shared/entry-point'
 import { api } from '~/shared/config/api'
+import { routes } from '~/shared/config/routes'
 
 export const signOutClicked = createEvent()
 
@@ -56,6 +58,11 @@ sample({
 sample({
   clock: signOutMutation.$succeeded,
   target: getSessionQuery.reset,
+})
+
+redirect({
+  clock: getSessionQuery.reset,
+  route: routes.auth,
 })
 
 interface ChainParams {
@@ -102,6 +109,7 @@ export const chainAuthorized = <Params extends RouteParams>(
       target: otherwise as EventCallable<void>,
     })
   }
+
 
   return chainRoute({
     route,

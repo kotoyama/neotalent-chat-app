@@ -3,9 +3,10 @@ import { CalorieCard } from './calorie-card'
 
 import { modelView } from 'effector-factorio'
 import { useUnit } from 'effector-react'
-import { Input, Button } from '@repo/ui/components'
+import { Button, Input } from '@repo/ui/components'
 
 import { appName } from '~/shared/settings'
+import { signOutClicked } from '~/entities/session'
 
 import { chatModel } from '../model'
 import styles from './chat.module.css'
@@ -36,7 +37,12 @@ export const ChatConversation = modelView(chatModel, () => {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>{appName}</header>
+      <header className={styles.header}>
+        <span>{appName}</span>
+        <Button variant="outlined" onClick={() => signOutClicked()}>
+          Sign Out
+        </Button>
+      </header>
       <main className={styles.history}>
         <section>
           {messages.map((msg) => (
