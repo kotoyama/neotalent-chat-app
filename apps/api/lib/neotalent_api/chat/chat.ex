@@ -34,10 +34,12 @@ defmodule NeotalentApi.Chat do
 
     # Parse sort direction
     sort_direction =
-      case Map.get(params, "sort", "asc") do
+      params
+      |> Map.get("sort", "asc")
+      |> String.downcase()
+      |> case do
         "desc" -> :desc
-        "DESC" -> :desc
-        _ -> :asc
+        _      -> :asc
       end
 
     # Apply after_id filter if provided
