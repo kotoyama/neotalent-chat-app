@@ -11,7 +11,7 @@ defmodule NeotalentApi.Workers.AIWorker do
     # Fetch last 10 messages for context using Redis cache first
     messages =
       case NeotalentApi.Cache.get_recent_messages(user.id, 10) do
-        [] -> Chat.list_messages(user, %{"limit" => 10, "offset" => 0})
+        [] -> Chat.list_messages(user, %{"limit" => 10, "sort" => "desc"})
         cached -> cached
       end
 

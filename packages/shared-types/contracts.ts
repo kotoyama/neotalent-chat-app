@@ -20,6 +20,8 @@ export const chatMessage = z.object({
 })
 
 export const getChatMessagesQuery = z.object({
+  limit: z.number().int().optional(),
+  sort: z.enum(['asc', 'desc']).optional(),
   after: z.number().int().optional(),
 })
 

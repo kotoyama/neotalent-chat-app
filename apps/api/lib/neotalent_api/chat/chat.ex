@@ -9,33 +9,59 @@ defmodule NeotalentApi.Chat do
   alias NeotalentApi.Chat.Message
 
   @doc """
-  Fetches messages using cursor-based pagination.
+  Fetches messages with optional pagination and sorting.
 
-  Query params:
-    • `after` – return messages with `id` greater than the given id (newer messages).
+  ## Parameters
+    * `:limit` - Maximum number of messages to return
+    * `:sort` - Sort direction, either `:asc` or `:desc` (default: `:asc`)
+    * `:after` - Return messages with ID greater than this value
   """
-  def list_messages(user, params) do
+  def list_messages(user, params \\ %{}) do
     base_query = from(m in Message, where: m.user_id == ^user.id)
 
-    after_id =
-      case Map.get(params, "after") do
-        id when is_integer(id) and id > 0 -> id
-        str when is_binary(str) ->
-          case Integer.parse(str) do
-            {int_id, _} when int_id > 0 -> int_id
+    # Parse limit parameter
+    limit =
+      case Map.get(params, "limit") do
+        nil -> nil
+        limit_str when is_binary(limit_str) ->
+          case Integer.parse(limit_str) do
+            {int, _} when int > 0 -> int
             _ -> nil
           end
+        int when is_integer(int) and int > 0 -> int
         _ -> nil
       end
 
-    query =
-      if after_id do
-        from(m in base_query, where: m.id > ^after_id, order_by: [asc: m.id])
-      else
-        from(m in base_query, order_by: [asc: m.id])
+    # Parse sort direction
+    sort_direction =
+      case Map.get(params, "sort", "asc") do
+        "desc" -> :desc
+        "DESC" -> :desc
+        _ -> :asc
       end
 
-    Repo.all(query)
+    # Apply after_id filter if provided
+    query =
+      case Map.get(params, "after") do
+        id when is_integer(id) and id > 0 ->
+          from(m in base_query, where: m.id > ^id)
+        str when is_binary(str) ->
+          case Integer.parse(str) do
+            {int_id, _} when int_id > 0 -> from(m in base_query, where: m.id > ^int_id)
+            _ -> base_query
+          end
+        _ ->
+          base_query
+      end
+
+    # Apply sorting and limit
+    query = from(m in query, order_by: [{^sort_direction, m.id}])
+
+    if limit do
+      Repo.all(from(m in query, limit: ^limit))
+    else
+      Repo.all(query)
+    end
   end
 
   @doc """
