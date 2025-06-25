@@ -1,0 +1,52 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-m);
+  border-radius: var(--uikit-border-radius);
+  border: 2px solid var(--button-borderColor);
+  background: var(--button-bgColor);
+  color: var(--button-textColor);
+  transition: background-color 0.2s ease-in-out;
+
+  &[data-variant='primary'] {
+    --button-bgColor: var(--uikit-color-primary-main);
+    --button-bgColor-hover: var(--uikit-color-primary-shade);
+    --button-textColor: var(--uikit-color-primary-contrast);
+    --button-borderColor: var(--uikit-color-primary-main);
+
+    &:hover:not(:disabled) {
+      --button-bgColor: var(--button-bgColor-hover);
+      --button-borderColor: var(--button-bgColor-hover);
+    }
+  }
+
+  &[data-variant='outlined'] {
+    --button-bgColor: transparent;
+    --button-textColor: var(--uikit-color-primary-main);
+    --button-borderColor: var(--uikit-color-primary-main);
+
+    &:hover:not(:disabled) {
+      --button-bgColor: var(--uikit-color-primary-main);
+      --button-borderColor: var(--uikit-color-primary-main);
+      --button-textColor: var(--uikit-color-primary-contrast);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    --button-bgColor: var(--uikit-color-background-disabled);
+    --button-borderColor: var(--uikit-color-background-disabled);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid var(--uikit-color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

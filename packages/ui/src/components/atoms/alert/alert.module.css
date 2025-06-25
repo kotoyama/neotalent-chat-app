@@ -1,0 +1,21 @@
+.alert {
+  padding: var(--space-m);
+  font-size: var(--text-s);
+  font-weight: 500;
+  border-radius: var(--uikit-border-radius);
+  border: 2px solid var(--alert-borderColor);
+  background: var(--alert-background-color);
+  color: var(--alert-color);
+
+  &[data-type='error'] {
+    --alert-borderColor: var(--uikit-color-text-error);
+    --alert-background-color: var(--uikit-color-background-error);
+    --alert-color: var(--uikit-color-text-error);
+  }
+
+  &[data-type='success'] {
+    --alert-borderColor: var(--uikit-color-text-success);
+    --alert-background-color: var(--uikit-color-background-success);
+    --alert-color: var(--uikit-color-text-success);
+  }
+}

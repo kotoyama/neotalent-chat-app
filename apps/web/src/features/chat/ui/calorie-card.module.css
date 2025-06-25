@@ -1,0 +1,39 @@
+.meal {
+  font-size: var(--text-l);
+  font-weight: 600;
+}
+
+.serving {
+  color: var(--uikit-color-text-muted);
+  margin: var(--space-xs) 0;
+}
+
+.totalsSection {
+  margin: var(--space-s) 0;
+}
+
+.totalsGrid {
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+}
+
+.ingredientList {
+  margin-top: var(--space-xxs);
+
+  & > li:no {
+    margin-bottom: var(--space-xxs);
+  }
+}
+
+.notes {
+  font-size: var(--text-xs);
+  color: var(--uikit-color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.disclaimer {
+  font-size: var(--text-xxs);
+  color: var(--uikit-color-text-muted);
+  margin-top: var(--space-xs);
+}

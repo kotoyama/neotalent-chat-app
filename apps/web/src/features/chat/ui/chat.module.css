@@ -1,0 +1,115 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header'
+    'main';
+  background: var(--uikit-color-background-surface-100);
+  height: 100vh;
+
+  & > header {
+    grid-area: header;
+    font-size: var(--text-l);
+    padding: var(--space-m);
+    text-align: center;
+  }
+
+  & > main {
+    grid-area: main;
+    overflow: auto;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+
+    & > section {
+      grid-area: 1 / 1 / 1 / 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-s);
+      padding: var(--space-m);
+    }
+
+    & > form {
+      grid-area: 2 / 1 / 2 / 2;
+    }
+  }
+
+  .msg {
+    display: flex;
+  }
+
+  .bubbleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxs);
+    align-items: end;
+    max-width: 70%;
+
+    &[data-sender='user'] {
+      margin-left: auto;
+
+      .bubble {
+        background: var(--uikit-color-primary-main);
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    &[data-sender='ai'] {
+      .bubble {
+        background: var(--uikit-color-background-surface-000);
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    .bubble {
+      padding: var(--space-s) var(--space-m);
+      border-radius: var(--uikit-border-radius);
+      font-size: var(--text-s);
+      color: var(--uikit-color-text-default);
+      line-height: var(--text-lineHeight-base);
+      word-break: break-word;
+
+      &[data-processing='true'] {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .inputArea {
+    display: flex;
+    gap: var(--space-xs);
+    padding: var(--space-m);
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    background: var(--uikit-color-background-surface-100);
+  }
+
+  .loader {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--uikit-color-text-default);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: var(--space-xs);
+  }
+
+  .error {
+    color: var(--uikit-color-text-error);
+    font-size: var(--text-s);
+  }
+}

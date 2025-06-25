@@ -1,0 +1,13 @@
+{
+  "name": "@repo/shared-types",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./contracts": "./contracts.ts",
+    "./types": "./types.ts"
+  },
+  "dependencies": {
+    "zod": "^3.25.67"
+  }
+}

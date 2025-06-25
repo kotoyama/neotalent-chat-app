@@ -1,0 +1,28 @@
+html {
+  font-size: var(--text-fontSize-base);
+  font-weight: var(--text-fontWeight-base);
+  line-height: var(--text-lineHeight-base);
+}
+
+body {
+  color: var(--uikit-color-text-default);
+  background: var(--uikit-color-background-body);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--text-lineHeight-fine);
+}
+
+h1 {
+  font-size: var(--text-xl);
+}
+
+h2 {
+  font-size: var(--text-l);
+}
+
+h3 {
+  font-size: var(--text-m);
+}

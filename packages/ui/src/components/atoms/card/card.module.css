@@ -1,0 +1,9 @@
+.card {
+  border-radius: var(--uikit-border-radius);
+  background: var(--uikit-color-background-surface-100);
+  padding: var(--space-xl);
+
+  @media (width <= 767px) {
+    padding: var(--space-l);
+  }
+}

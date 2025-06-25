@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  max-width: 25rem;
+
+  h1 {
+    text-align: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    margin-top: var(--space-l);
+  }
+
+  .error {
+    margin-top: var(--space-m);
+  }
+}
