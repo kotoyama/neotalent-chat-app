@@ -38,4 +38,5 @@ $ MIX_ENV=dev mix phx.server
 - Swagger for API documentation.
 - Proper incoming data validation.
 - Rate limiting.
+- Add tests.
 - Prompt enhancement?
